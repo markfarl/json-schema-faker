@@ -126,7 +126,7 @@ function typecast(type, schema, callback) {
 
     case 'boolean':
       //value = !!value;
-      value = true;
+      value = false;
       break;
 
     case 'string': {
@@ -161,7 +161,7 @@ function typecast(type, schema, callback) {
         default:
           break;
       }*/
-      value = "string";
+      value = "stringo";
       break;
     }
 
@@ -260,12 +260,13 @@ function notValue(schema, parent) {
 
     copy.enum = [value];
   }
-
+  /*
   if (schema.required && copy.properties) {
     schema.required.forEach(prop => {
       delete copy.properties[prop];
     });
   }
+  */
 
   // TODO: explore more scenarios
 

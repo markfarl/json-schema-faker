@@ -129,7 +129,7 @@ function objectType(value, path, resolve, traverseCallback) {
     let one;
 
     do {
-      one = requiredProperties.shift();
+      //one = requiredProperties.shift();
     } while (props[one]);
 
     return one;

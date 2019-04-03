@@ -15,7 +15,7 @@ defaults.optionalsProbability = false;
 defaults.fixedProbabilities = false;
 defaults.useExamplesValue = false;
 defaults.useDefaultValue = false;
-defaults.requiredOnly = false;
+defaults.requiredOnly = true;
 
 defaults.minItems = 0;
 defaults.maxItems = null;
