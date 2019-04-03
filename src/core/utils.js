@@ -115,18 +115,22 @@ function typecast(type, schema, callback) {
   // normalize output value
   switch (type || schema.type) {
     case 'number':
-      value = parseFloat(value);
+      //value = parseFloat(value);
+      value = 1;
       break;
 
     case 'integer':
-      value = parseInt(value, 10);
+      //value = parseInt(value, 10);
+      value = 1
       break;
 
     case 'boolean':
-      value = !!value;
+      //value = !!value;
+      value = true;
       break;
 
     case 'string': {
+      /*
       value = String(value);
 
       const min = Math.max(params.minLength || 0, 0);
@@ -156,7 +160,8 @@ function typecast(type, schema, callback) {
 
         default:
           break;
-      }
+      }*/
+      value = "string";
       break;
     }
 

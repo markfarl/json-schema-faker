@@ -1,6 +1,6 @@
 /*!
  * json-schema-faker v0.5.0-rc16
- * (c) 2018-present Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)
+ * (c) 2019-present Alvaro Cabrera <pateketrueke@gmail.com> (https://soypache.co)
  * Released under the MIT License.
  */
 (function (global, factory) {
@@ -95,7 +95,7 @@
    * This class defines a registry for custom settings used within JSF.
    */
 
-  var OptionRegistry = (function (Registry$$1) {
+  var OptionRegistry = /*@__PURE__*/(function (Registry$$1) {
     function OptionRegistry() {
       Registry$$1.call(this);
       this.data = Object.assign({}, defaults);
@@ -1301,31 +1301,47 @@
 
     switch (type || schema.type) {
       case 'number':
-        value = parseFloat(value);
+        //value = parseFloat(value);
+        value = 1;
         break;
 
       case 'integer':
-        value = parseInt(value, 10);
+        //value = parseInt(value, 10);
+        value = 1;
         break;
 
       case 'boolean':
-        value = !!value;
+        //value = !!value;
+        value = true;
         break;
 
       case 'string':
         {
+          /*
           value = String(value);
-          var min$1 = Math.max(params.minLength || 0, 0);
-          var max$1 = Math.min(params.maxLength || Infinity, Infinity);
-
-          while (value.length < min$1) {
-            value += " " + value;
+           const min = Math.max(params.minLength || 0, 0);
+          const max = Math.min(params.maxLength || Infinity, Infinity);
+           while (value.length < min) {
+            value += ` ${value}`;
           }
-
-          if (value.length > max$1) {
-            value = value.substr(0, max$1);
+           if (value.length > max) {
+            value = value.substr(0, max);
           }
-
+           switch (schema.format) {
+            case 'date-time':
+            case 'datetime':
+              value = new Date(value).toISOString();
+              break;
+             case 'date':
+              value = new Date(value).toISOString().substr(0, 10);
+              break;
+             case 'time':
+              value = new Date(value).toISOString().substr(11);
+              break;
+             default:
+              break;
+          }*/
+          value = "string";
           break;
         }
 
@@ -1659,7 +1675,7 @@
     }
   }
 
-  var ParseError = (function (Error) {
+  var ParseError = /*@__PURE__*/(function (Error) {
     function ParseError(message, path) {
       Error.call(this);
 
@@ -1826,7 +1842,7 @@
     var length = random.number(minItems, maxItems, 1, 5);
 
     if (optionalsProbability !== false) {
-      length = fixedProbabilities ? Math.round(maxItems * optionalsProbability) : random.number(minItems, maxItems * optionalsProbability);
+      length = fixedProbabilities ? Math.round((maxItems || length) * optionalsProbability) : Math.abs(random.number(minItems, maxItems) * optionalsProbability);
     } // TODO below looks bad. Should additionalItems be copied as-is?
 
 
@@ -2461,7 +2477,7 @@
 
   function run(refs, schema, container) {
     try {
-      var result = traverse(schema, [], function reduce(sub, maxReduceDepth, parentSchemaPath) {
+      var result = traverse(utils.merge({}, schema), [], function reduce(sub, maxReduceDepth, parentSchemaPath) {
         if (typeof maxReduceDepth === 'undefined') {
           maxReduceDepth = random.number(1, 3);
         }
