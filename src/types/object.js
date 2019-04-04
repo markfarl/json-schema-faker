@@ -36,7 +36,6 @@ function objectType(value, path, resolve, traverseCallback) {
     // just nothing
     return {};
   }
-
   if (optionAPI('requiredOnly') === true) {
     requiredProperties.forEach(key => {
       if (properties[key]) {
@@ -74,7 +73,7 @@ function objectType(value, path, resolve, traverseCallback) {
   });
 
   // properties are read from right-to-left
-  const _props = requiredProperties.concat(extraProperties).slice(0, max);
+  const _props = requiredProperties.concat(optionalProperties).slice(0, max);
 
   const skipped = [];
   const missing = [];

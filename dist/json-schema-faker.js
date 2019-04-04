@@ -82,7 +82,7 @@
   defaults.fixedProbabilities = false;
   defaults.useExamplesValue = false;
   defaults.useDefaultValue = false;
-  defaults.requiredOnly = false;
+  defaults.requiredOnly = true;
   defaults.minItems = 0;
   defaults.maxItems = null;
   defaults.minLength = 0;
@@ -1312,7 +1312,7 @@
 
       case 'boolean':
         //value = !!value;
-        value = true;
+        value = false;
         break;
 
       case 'string':
@@ -1990,7 +1990,7 @@
       return extraPropertiesRandomOrder.indexOf(_item) !== -1;
     }); // properties are read from right-to-left
 
-    var _props = requiredProperties.concat(extraProperties).slice(0, max);
+    var _props = requiredProperties.concat(optionalProperties).slice(0, max);
 
     var skipped = [];
     var missing = [];
@@ -2035,16 +2035,6 @@
 
     var current = Object.keys(props).length + (fillProps ? 0 : skipped.length);
 
-    function get() {
-      var one;
-
-      do {
-        one = requiredProperties.shift();
-      } while (props[one]);
-
-      return one;
-    }
-
     while (fillProps) {
       if (!(patternPropertyKeys.length || allowsAdditional)) {
         break;
@@ -2066,7 +2056,7 @@
               break;
             }
 
-            key = get() || random.pick(propertyKeys);
+            key = random.pick(propertyKeys);
           } while (typeof props[key] !== 'undefined');
 
           if (typeof props[key] === 'undefined') {
@@ -2082,7 +2072,7 @@
             current += 1;
           }
         } else {
-          var word$1 = get() || wordsGenerator(1) + random.randexp('[a-f\\d]{1,3}');
+          var word$1 = wordsGenerator(1) + random.randexp('[a-f\\d]{1,3}');
 
           if (!props[word$1]) {
             props[word$1] = additionalProperties || anyType;

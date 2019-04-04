@@ -76,7 +76,7 @@ defaults.optionalsProbability = false;
 defaults.fixedProbabilities = false;
 defaults.useExamplesValue = false;
 defaults.useDefaultValue = false;
-defaults.requiredOnly = false;
+defaults.requiredOnly = true;
 defaults.minItems = 0;
 defaults.maxItems = null;
 defaults.minLength = 0;
@@ -414,7 +414,7 @@ function typecast(type, schema, callback) {
 
     case 'boolean':
       //value = !!value;
-      value = true;
+      value = false;
       break;
 
     case 'string':
@@ -1092,7 +1092,7 @@ function objectType(value, path, resolve, traverseCallback) {
     return extraPropertiesRandomOrder.indexOf(_item) !== -1;
   }); // properties are read from right-to-left
 
-  var _props = requiredProperties.concat(extraProperties).slice(0, max);
+  var _props = requiredProperties.concat(optionalProperties).slice(0, max);
 
   var skipped = [];
   var missing = [];
@@ -1137,16 +1137,6 @@ function objectType(value, path, resolve, traverseCallback) {
 
   var current = Object.keys(props).length + (fillProps ? 0 : skipped.length);
 
-  function get() {
-    var one;
-
-    do {
-      one = requiredProperties.shift();
-    } while (props[one]);
-
-    return one;
-  }
-
   while (fillProps) {
     if (!(patternPropertyKeys.length || allowsAdditional)) {
       break;
@@ -1168,7 +1158,7 @@ function objectType(value, path, resolve, traverseCallback) {
             break;
           }
 
-          key = get() || random.pick(propertyKeys);
+          key = random.pick(propertyKeys);
         } while (typeof props[key] !== 'undefined');
 
         if (typeof props[key] === 'undefined') {
@@ -1184,7 +1174,7 @@ function objectType(value, path, resolve, traverseCallback) {
           current += 1;
         }
       } else {
-        var word$1 = get() || wordsGenerator(1) + random.randexp('[a-f\\d]{1,3}');
+        var word$1 = wordsGenerator(1) + random.randexp('[a-f\\d]{1,3}');
 
         if (!props[word$1]) {
           props[word$1] = additionalProperties || anyType;
