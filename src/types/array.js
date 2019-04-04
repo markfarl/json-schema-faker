@@ -53,8 +53,8 @@ function arrayType(value, path, resolve, traverseCallback) {
     });
   }
 
-  let minItems = value.minItems;
-  let maxItems = value.maxItems;
+  let minItems = 1;
+  let maxItems = 1;
 
   if (optionAPI('minItems')) {
     // fix boundaries
@@ -99,7 +99,6 @@ function arrayType(value, path, resolve, traverseCallback) {
   if (value.uniqueItems) {
     return unique(path.concat(['items']), items, value, sample, resolve, traverseCallback);
   }
-
   return items;
 }
 

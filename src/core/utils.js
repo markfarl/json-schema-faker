@@ -24,6 +24,7 @@ function getSubAttribute(obj, dotSeparatedKey) {
  * @param properties
  * @returns {boolean}
  */
+
 function hasProperties(obj, ...properties) {
   return properties.filter(key => {
     return typeof obj[key] !== 'undefined';

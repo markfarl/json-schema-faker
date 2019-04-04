@@ -1817,8 +1817,8 @@
       });
     }
 
-    var minItems = value.minItems;
-    var maxItems = value.maxItems;
+    var minItems = 1;
+    var maxItems = 1;
 
     if (optionAPI('minItems')) {
       // fix boundaries
