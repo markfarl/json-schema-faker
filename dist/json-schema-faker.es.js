@@ -523,12 +523,14 @@ function notValue(schema, parent) {
 
     copy.enum = [value];
   }
-
-  if (schema.required && copy.properties) {
-    schema.required.forEach(function (prop) {
+  /*
+   if (schema.required && copy.properties) {
+    schema.required.forEach(prop => {
       delete copy.properties[prop];
     });
-  } // TODO: explore more scenarios
+  }
+  */
+  // TODO: explore more scenarios
 
 
   return copy;
