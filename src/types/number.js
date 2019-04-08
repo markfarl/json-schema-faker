@@ -53,7 +53,7 @@ function numberType(value) {
   }
   */
   //return random.number(min, max, undefined, undefined, true);
-  return "1";
+  return 1;
 }
 
 export default numberType;

@@ -1903,7 +1903,7 @@
     }
     */
     //return random.number(min, max, undefined, undefined, true);
-    return "1";
+    return 1;
   }
 
   // returns floating point numbers, and `integer` type truncates the fraction
