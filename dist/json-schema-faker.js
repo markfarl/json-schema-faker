@@ -1855,60 +1855,53 @@
   }
 
   function numberType(value) {
-    var min = typeof value.minimum === 'undefined' ? env.MIN_INTEGER : value.minimum;
-    var max = typeof value.maximum === 'undefined' ? env.MAX_INTEGER : value.maximum;
-    var multipleOf = value.multipleOf;
-
-    if (multipleOf) {
+    /*
+    let min = typeof value.minimum === 'undefined' ? env.MIN_INTEGER : value.minimum;
+    let max = typeof value.maximum === 'undefined' ? env.MAX_INTEGER : value.maximum;
+     const multipleOf = value.multipleOf;
+     if (multipleOf) {
       max = Math.floor(max / multipleOf) * multipleOf;
       min = Math.ceil(min / multipleOf) * multipleOf;
     }
-
-    if (value.exclusiveMinimum && min === value.minimum) {
+     if (value.exclusiveMinimum && min === value.minimum) {
       min += multipleOf || 1;
     }
-
-    if (value.exclusiveMaximum && max === value.maximum) {
+     if (value.exclusiveMaximum && max === value.maximum) {
       max -= multipleOf || 1;
     }
-
-    if (min > max) {
+     if (min > max) {
       return NaN;
     }
-
-    if (multipleOf) {
+     if (multipleOf) {
       if (String(multipleOf).indexOf('.') === -1) {
-        var base = random.number(Math.floor(min / multipleOf), Math.floor(max / multipleOf)) * multipleOf;
-
-        while (base < min) {
+        let base = random.number(Math.floor(min / multipleOf), Math.floor(max / multipleOf)) * multipleOf;
+         while (base < min) {
           base += value.multipleOf;
         }
-
-        return base;
+         return base;
       }
-
-      var boundary = (max - min) / multipleOf;
-      var num;
-      var fix;
-
-      do {
+       const boundary = (max - min) / multipleOf;
+       let num;
+      let fix;
+       do {
         num = random.number(0, boundary) * multipleOf;
-        fix = num / multipleOf % 1;
-      } while (fix !== 0); // FIXME: https://github.com/json-schema-faker/json-schema-faker/issues/379
-
-
-      return num;
+        fix = (num / multipleOf) % 1;
+      } while (fix !== 0);
+        // FIXME: https://github.com/json-schema-faker/json-schema-faker/issues/379
+       return num;
     }
-
-    return random.number(min, max, undefined, undefined, true);
+    */
+    //return random.number(min, max, undefined, undefined, true);
+    return "1";
   }
 
   // returns floating point numbers, and `integer` type truncates the fraction
   // part, leaving the result as an integer.
 
   function integerType(value) {
-    //return number(Object.assign({ multipleOf: 1 }, value));
-    return 1;
+    return numberType(Object.assign({
+      multipleOf: 1
+    }, value));
   }
 
   var LIPSUM_WORDS = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore\net dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\npariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est\nlaborum".split(/\W/);
