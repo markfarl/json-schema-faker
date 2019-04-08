@@ -1,5 +1,5 @@
 import booleanGenerator from '../generators/boolean';
 
-const booleanType = true;
+const booleanType = booleanGenerator;
 
 export default booleanType;
