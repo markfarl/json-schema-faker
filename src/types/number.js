@@ -2,6 +2,7 @@ import random from '../core/random';
 import env from '../core/constants';
 
 function numberType(value) {
+  /*
   let min = typeof value.minimum === 'undefined' ? env.MIN_INTEGER : value.minimum;
   let max = typeof value.maximum === 'undefined' ? env.MAX_INTEGER : value.maximum;
 
@@ -50,8 +51,9 @@ function numberType(value) {
 
     return num;
   }
-
-  return random.number(min, max, undefined, undefined, true);
+  */
+  //return random.number(min, max, undefined, undefined, true);
+  return "1";
 }
 
 export default numberType;
