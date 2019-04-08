@@ -851,18 +851,7 @@ function inferType(obj, schemaPath) {
   }
 }
 
-/**
- * Generates randomized boolean value.
- *
- * @returns {boolean}
- */
-
-function booleanGenerator() {
-  //return optionAPI('random')() > 0.5;
-  return true;
-}
-
-var booleanType = booleanGenerator;
+var booleanType = true;
 
 /**
  * Generates null value.
@@ -1020,9 +1009,8 @@ function numberType(value) {
 // part, leaving the result as an integer.
 
 function integerType(value) {
-  return numberType(Object.assign({
-    multipleOf: 1
-  }, value));
+  //return number(Object.assign({ multipleOf: 1 }, value));
+  return 1;
 }
 
 var LIPSUM_WORDS = "Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore\net dolore magna aliqua Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea\ncommodo consequat Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla\npariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est\nlaborum".split(/\W/);
