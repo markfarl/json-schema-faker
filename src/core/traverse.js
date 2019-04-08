@@ -58,7 +58,8 @@ function traverse(schema, path, resolve, rootSchema) {
   let type = schema.type;
 
   if (Array.isArray(type)) {
-    type = random.pick(type);
+    //MF Pick first type always
+    type = type[0];
   } else if (typeof type === 'undefined') {
     // Attempt to infer the type
     type = inferType(schema, path) || type;

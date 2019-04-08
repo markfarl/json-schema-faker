@@ -77,6 +77,7 @@ function inferType(obj, schemaPath) {
     const lastElementInPath = schemaPath[schemaPath.length - 1];
 
     if (matchesType(obj, lastElementInPath, inferredProperties[typeName])) {
+      console.log(typeName);
       return typeName;
     }
   }
