@@ -1741,6 +1741,7 @@
       var lastElementInPath = schemaPath[schemaPath.length - 1];
 
       if (matchesType(obj, lastElementInPath, inferredProperties[typeName])) {
+        console.log(typeName);
         return typeName;
       }
     }
@@ -2350,7 +2351,8 @@
     var type = schema.type;
 
     if (Array.isArray(type)) {
-      type = random.pick(type);
+      //MF Pick first type always
+      type = type[0];
     } else if (typeof type === 'undefined') {
       // Attempt to infer the type
       type = inferType(schema, path) || type;
