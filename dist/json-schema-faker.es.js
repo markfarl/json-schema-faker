@@ -1057,15 +1057,17 @@ function objectType(value, path, resolve, traverseCallback) {
     // just nothing
     return {};
   }
-
+  /*
   if (optionAPI('requiredOnly') === true) {
-    requiredProperties.forEach(function (key) {
+    requiredProperties.forEach(key => {
       if (properties[key]) {
         props[key] = properties[key];
       }
     });
-    return traverseCallback(props, path.concat(['properties']), resolve);
+     return traverseCallback(props, path.concat(['properties']), resolve);
   }
+  */
+
 
   var optionalsProbability = optionAPI('alwaysFakeOptionals') === true ? 1.0 : optionAPI('optionalsProbability');
   var fixedProbabilities = optionAPI('fixedProbabilities') || false;

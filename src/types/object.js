@@ -36,6 +36,7 @@ function objectType(value, path, resolve, traverseCallback) {
     // just nothing
     return {};
   }
+  /*
   if (optionAPI('requiredOnly') === true) {
     requiredProperties.forEach(key => {
       if (properties[key]) {
@@ -45,6 +46,7 @@ function objectType(value, path, resolve, traverseCallback) {
 
     return traverseCallback(props, path.concat(['properties']), resolve);
   }
+  */
 
   const optionalsProbability = optionAPI('alwaysFakeOptionals') === true ? 1.0 : optionAPI('optionalsProbability');
   const fixedProbabilities = optionAPI('fixedProbabilities') || false;
